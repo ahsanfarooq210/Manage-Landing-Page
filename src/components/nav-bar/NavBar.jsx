@@ -1,7 +1,10 @@
-import React from "react";
+import React,{useState} from "react";
 import logo from "../../assets/logo.svg";
+import "./NavBar.css";
 
 const NavBar = () => {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+
   return (
     // nav bar
     <nav className="relative container p-6 mx-auto">
@@ -35,6 +38,42 @@ const NavBar = () => {
           className="hidden md:block p-3 px-6 pt-2 text-white bg-brightRed rounded-full baseline hover:bg-brightRedLight duration-500">
           Get Started
         </a>
+        {/* hamburger icon */}
+        <button
+          id="menu-btn"
+          className={`${isMobileMenuOpen?"open":""} block hamburger md:hidden focus:outline-none `}
+          onClick={() => {
+            setIsMobileMenuOpen((prevValue)=>{
+              return !prevValue
+            })
+          }}>
+          <span className="hamburger-top"></span>
+          <span className="hamburger-middle"></span>
+          <span className="hamburger-bottom"></span>
+        </button>
+      </div>
+
+      {/* mobile menu */}
+      <div className="md:hidden ">
+        <div
+          id="menu"
+          className={`${isMobileMenuOpen? "flex":"hidden"} absolute flex-col items-center self-end py-8 mt-10 space-y-6 font-bold bg-white sm:w-auto sm:self-center left-6 right-6 drop-shadow-md`}>
+          <a href="#" className="">
+            Pricing
+          </a>
+          <a href="#" className="">
+            Product
+          </a>
+          <a href="#" className="">
+            About Us
+          </a>
+          <a href="#" className="">
+            Careers
+          </a>
+          <a href="#" className="">
+            Community
+          </a>
+        </div>
       </div>
     </nav>
   );
